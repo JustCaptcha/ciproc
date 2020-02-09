@@ -1,5 +1,3 @@
-#!/usr/bin/env babel-node
-
 import CryptoJs from 'crypto-js';
 import fs from 'fs';
 import path from 'path';

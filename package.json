@@ -1,0 +1,35 @@
+{
+  "name": "cipher",
+  "version": "0.0.1",
+  "description": "A CLI tool to encrypt and decrypt text",
+  "main": "main.js",
+  "bin": {
+    "cipher": "cip.js"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "commander": "^4.1.1",
+    "crypto-js": "^3.1.9-1",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/polyfill": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/register": "^7.8.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node ./src/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JustCaptcha/ciproc.git"
+  },
+  "author": "JustCaptcha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JustCaptcha/ciproc/issues"
+  },
+  "homepage": "https://github.com/JustCaptcha/ciproc#readme"
+}
