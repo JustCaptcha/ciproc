@@ -13,13 +13,25 @@ import dotenv from 'dotenv';
     .action((dir) => {
       fs.readFile(dir, (err, data) => {
         if (data) {
-          const encData = CryptoJs.AES.encrypt(data.toString(), process.env.KEY).toString();
-          fs.writeFile(path.resolve('output.txt'), encData, (fsErr) => {
+          const encData = CryptoJs.AES.encrypt(data.toString(), process.env.KEY)
+          fs.writeFile(path.resolve('crypted.txt'), encData, (fsErr) => {
             if (fsErr) console.log(fsErr);
           });
         }
         if (err) console.log(err);
       });
+    });
+  program
+    .command('decrypt <div>')
+    .action((dir) => {
+      fs.readFile(dir, (err, data) => {
+        if (data) {
+          const decData = CryptoJs.AES.decrypt(data.toString(), process.env.KEY).toString(CryptoJs.enc.Utf8);
+          fs.writeFile(path.resolve('decrypted.txt'), decData, (fsErr) => {
+            if (fsErr) console.log(fsErr);
+          });
+        }
+      })
     })
   program.parse(process.argv);
 })();
