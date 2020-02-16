@@ -13,8 +13,10 @@ import dotenv from 'dotenv';
     .action((dir) => {
       fs.readFile(dir, (err, data) => {
         if (data) {
+          const ext = path.extname(dir);
+          const filename = path.basename(dir.replace(ext, ''));
           const encData = CryptoJs.AES.encrypt(data.toString(), process.env.KEY)
-          fs.writeFile(path.resolve('crypted.txt'), encData, (fsErr) => {
+          fs.writeFile(path.resolve(`${filename}.${process.env.EXT}${ext}`), encData, (fsErr) => {
             if (fsErr) console.log(fsErr);
           });
         }
@@ -27,7 +29,7 @@ import dotenv from 'dotenv';
       fs.readFile(dir, (err, data) => {
         if (data) {
           const decData = CryptoJs.AES.decrypt(data.toString(), process.env.KEY).toString(CryptoJs.enc.Utf8);
-          fs.writeFile(path.resolve('decrypted.txt'), decData, (fsErr) => {
+          fs.writeFile(path.resolve(dir.replace(process.env.EXT, '')), decData, (fsErr) => {
             if (fsErr) console.log(fsErr);
           });
         }
